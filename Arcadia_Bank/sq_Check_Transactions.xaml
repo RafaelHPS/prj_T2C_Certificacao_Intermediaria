@@ -1,0 +1,215 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="sq_Check_Transactions" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Dados das transacoes que deverão ser pesquisadas no Arcadia Bank, Payment Account and Payment Amount.&#xD;&#xA;&#xD;&#xA;Nao é necessário ser In/Out, pois quando altera uma dt que foi usada como argumento In, ela mexe na dt original." Name="arg_in_dtDadosTransacoes" Type="InArgument(sd:DataTable)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>834,1937</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>sq_Check_Transactions_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="32">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="34">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Realiza a verificação das transacoes nas suas respectivas contas" DisplayName="sq_Check_Transactions" sap:VirtualizedContainerService.HintSize="705,2277" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'chrome.exe Arcadia' Bank" sap:VirtualizedContainerService.HintSize="643,2135" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="6fb3cb018ad0f36c2703f933ad8f27db" Selector="&lt;html app='chrome.exe' title='Arcadia*' /&gt;">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Realiza a verificacao de cada transacao na respectiva conta" sap:VirtualizedContainerService.HintSize="609,1988" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="sd:DataTable" Name="var_dtDadosTransacoesCopia" />
+              <Variable x:TypeArguments="x:String" Name="var_strUrlBaseAcessarConta" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign Cria uma copia da Dt das transacoes para conseguirmos manipula-la" sap:VirtualizedContainerService.HintSize="547,61" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="sd:DataTable">[var_dtDadosTransacoesCopia]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="sd:DataTable">[arg_in_dtDadosTransacoes.Copy]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[var_dtDadosTransacoesCopia]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="547,1776" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+              <ui:ForEachRow.Body>
+                <ActivityAction x:TypeArguments="sd:DataRow">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="TransacaoAtual" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Verifica Transacoes" sap:VirtualizedContainerService.HintSize="513,1661" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="var_strNumeroConta" />
+                      <Variable x:TypeArguments="x:Boolean" Name="var_booNenhumResultado" />
+                      <Variable x:TypeArguments="x:Int32" Name="var_intNumeroLinha" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap2010:Annotation.AnnotationText="Cria uma URL base para acessarmos as contas" DisplayName="Assign URL Base Conta" sap:VirtualizedContainerService.HintSize="451,103" sap2010:WorkflowViewState.IdRef="Assign_2">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[var_strUrlBaseAcessarConta]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">["https://developer.automationanywhere.com/challenges/automationanywherelabs-arcadiabank_acct{CONTA}.html"]</InArgument>
+                      </Assign.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Assign>
+                    <Assign DisplayName="Assign Captura Numero da Conta" sap:VirtualizedContainerService.HintSize="451,61" sap2010:WorkflowViewState.IdRef="Assign_3">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[var_strNumeroConta]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(TransacaoAtual("Payment_Account").ToString,"[^\d]","")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign DisplayName="Assign Atribui numero da conta na url" sap:VirtualizedContainerService.HintSize="451,61" sap2010:WorkflowViewState.IdRef="Assign_4">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[var_strUrlBaseAcessarConta]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[var_strUrlBaseAcessarConta.Replace("{CONTA}",var_strNumeroConta)]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To Vai para pagina da conta" sap:VirtualizedContainerService.HintSize="451,60" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[var_strUrlBaseAcessarConta]" />
+                    <Delay DisplayName=" Delay 5 seconds" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="451,90" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'Payment Amount'" sap:VirtualizedContainerService.HintSize="451,135" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[TransacaoAtual(&quot;Payment_Amount&quot;).ToString]">
+                      <ui:TypeInto.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="13280316-ebc2-477c-b68c-31999b7a2612" InformativeScreenshot="a5d659bfd54e52f22a5915af60b4282d" Selector="&lt;webctrl tag='INPUT' type='search' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:TypeInto.Target>
+                    </ui:TypeInto>
+                    <ui:UiElementExists DisplayName="Element Exists 'Nenhum Resultado'" Exists="[var_booNenhumResultado]" sap:VirtualizedContainerService.HintSize="451,107" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                      <ui:UiElementExists.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2b586c55-44e4-4952-a335-2e88c54a9a11" InformativeScreenshot="3b856f5b913af134844e78c0cf8e9eee" Selector="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='TD' aaname='No results match your search query' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:UiElementExists.Target>
+                    </ui:UiElementExists>
+                    <ui:IfElseIf DisplayName="Else If Caso nao encontre nenhum resultado" sap:VirtualizedContainerService.HintSize="451,220" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
+                      <ui:IfElseIf.ConditionBlocks>
+                        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                          <ui:IfElseIfBlock BlockType="If" Condition="[var_booNenhumResultado]">
+                            <ui:IfElseIfBlock.Then>
+                              <ui:Continue sap:VirtualizedContainerService.HintSize="334,25" sap2010:WorkflowViewState.IdRef="Continue_2" />
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                        </sc:BindingList>
+                      </ui:IfElseIf.ConditionBlocks>
+                    </ui:IfElseIf>
+                    <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[arg_in_dtDadosTransacoes]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="451,292" sap2010:WorkflowViewState.IdRef="LookupDataTable_1" LookupColumnName="Numero_Transacao" LookupValue="[TransacaoAtual(&quot;Numero_Transacao&quot;).ToString]" RowIndex="[var_intNumeroLinha]" />
+                    <Assign DisplayName="Assign Atribui sim para transacao encontrada" sap:VirtualizedContainerService.HintSize="451,61" sap2010:WorkflowViewState.IdRef="Assign_5">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Object">[arg_in_dtDadosTransacoes(var_intNumeroLinha).Item("Encontrada")]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Object">["SIM"]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEachRow.Body>
+            </ui:ForEachRow>
+          </Sequence>
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+    </ui:BrowserScope>
+  </Sequence>
+</Activity>
